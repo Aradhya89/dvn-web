@@ -1,0 +1,225 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDITNG PAGE</title>
+    <style>
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 15px varrgba(0, 170, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Edit Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <p>Current Image:</p>
+        <img src="{{ member.photo_url }}" class="profile-img"><br><br>
+
+        <input type="file" name="image"><br><br>
+        <label name="name">Enter Name</label>
+        <input type="text" name="name" value="{{ member.name }}"><br><br>
+
+        <label name="role">Enter the Role</label>
+        <input type="text" name="role" value="{{ member.role }}"><br><br>
+
+        <label name="bio">Enter the Bio</label>
+        <textarea name="bio">{{ member.bio }}</textarea><br><br>
+
+        <h2>ENTER THE Achievements</h2><BR>
+        <label name="achievement1">Line 1</label>
+        <input type="text" name="achievement1" value="{{ member.ac1 }}"><br><br>
+
+        <label name="achievements">Line 2</label>
+        <input type="text" name="achievement2" value="{{ member.ac2 }}"><br><br>
+
+        <label name="achievements">Line 3</label>
+        <input type="text" name="achievement3" value="{{ member.ac3 }}"><br><br>
+
+
+
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+
+    <!-- Use same CSS file as team page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/team.css') }}">
+
+    <style>
+        /* ---- Edit Page Specific Styles ---- */
+
+        .edit-container {
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .edit-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .edit-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .edit-image {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .edit-image img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .edit-image input {
+            font-size: 0.85rem;
+        }
+
+        .edit-form {
+            flex: 1;
+        }
+
+        .edit-image label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+        }
+
+        .edit-form label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .edit-form input,
+        .edit-form textarea {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-input);
+            background: var(--bg-light);
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .edit-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .save-btn {
+            margin: 2.5rem auto 0;
+            display: block;
+            padding: 0.7rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            border: 1px solid var(--primary-blue);
+            background: transparent;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .save-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .edit-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .edit-form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="edit-container">
+        <h2 class="section-title">Profile Edit</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="edit-card">
+
+                <div class="edit-layout">
+
+                    <!-- IMAGE COLUMN -->
+                    <div class="edit-image">
+                        <img src="{{ member.photo_url }}" alt="Profile Image"><br>
+                        <label for="image">UPLOAD PHOTO</label><br>
+                        <input type="file" name="image">
+                    </div>
+
+
+                    <!-- FORM COLUMN -->
+                    <div class="edit-form">
+
+                        <label for="name">Faculty Name</label>
+                        <input type="text" id="name" name="name" value="{{ member.name }}" required>
+
+                        <label for="role">Role</label>
+                        <input type="text" id="role" name="role" value="{{ member.role }}" required>
+
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio">{{ member.bio }}</textarea>
+
+                        <label>Key Achievements</label>
+                        <input type="text" name="achievement1" value="{{ member.ac1 }}">
+                        <input type="text" name="achievement2" value="{{ member.ac2 }}" style="margin-top:0.5rem;">
+                        <input type="text" name="achievement3" value="{{ member.ac3 }}" style="margin-top:0.5rem;">
+
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">SAVE</button>
+
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

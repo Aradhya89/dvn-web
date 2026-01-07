@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Vibe Network | DVN Club</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/team.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+</head>
+
+
+<body>
+    <header class="navbar">
+        <div class="navcontainer nav-content">
+            <div class="logo-area">
+                <img src="{{url_for('static', filename='img/dvn-logo.png')}}" class="logo light-logo" alt="logo" />
+                <img src="{{url_for('static', filename='img/dvn-logo-dark.png')}}" class="logo dark-logo" alt="logo" />
+                <!-- <span class="logo-text">DATA VIBE NETWORK</span> -->
+            </div>
+
+            <nav class="nav-links">
+                <a href="/admin-main">Message</a>
+                <a href="/admin">Page Editor</a>
+                <a href="team">Eventes</a>
+                <a href="/logout" class="contact-btn">Logout</a>
+                <button class="toggle" id="theme-toggle"
+                    style="cursor:pointer; border:none; background:none; font-size:1.3rem;">🌙</button>
+                <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            </nav>
+        </div>
+    </header>
+
+    <header class="page-header">
+        <h1>DVN TEAM</h1>
+        <p class="subtitle">CONTENT TO BE WRITTEN (just like meet our team member)</p>
+    </header>
+
+    <!-- FACULTY SECTION -->
+    <main class="container">
+        <section class="team-section">
+            <!-- SECTION TEXT -->
+            <h2 class="section-title">Faculty Coordinators</h2>
+
+            <!-- FACULTY 1 -->
+            <div class="card detailed-card">
+                <div class="card-image-wrapper">
+                    <img src="{{ data.fac1.photo_url }}" alt="FACULTY 1" class="profile-img">
+                </div>
+                <div class="card-content">
+                    <span class="role-badge">{{ data.fac1.role}}</span>
+                    <h3>{{ data.fac1.name }}</h3>
+                    <p class="bio"> {{ data.fac1.bio }} </p>
+
+                    <div class="achievements">
+                        <h4>Key Achievements</h4>
+                        <ul>
+                            <li>{{ data.fac1.ac1 }}</li>
+                            <li>{{ data.fac1.ac2 }}</li>
+                            <li>{{ data.fac1.ac3 }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/admin/edit/fac1">
+                    <button>Edit</button>
+                </a>
+            </div>
+
+            <!-- FACULTY 2 -->
+            <div class="card detailed-card">
+                <div class="card-image-wrapper">
+                    <img src="{{ data.fac2.photo_url }}" alt="FACULTY 1" class="profile-img">
+                </div>
+                <div class="card-content">
+                    <span class="role-badge">{{ data.fac2.role }}</span>
+                    <h3>{{ data.fac2.name }}</h3>
+                    <p class="bio"> {{ data.fac2.bio }} </p>
+
+                    <div class="achievements">
+                        <h4>Key Achievements</h4>
+                        <ul>
+                            <li>{{ data.fac2.ac1 }}</li>
+                            <li>{{ data.fac2.ac2 }}</li>
+                            <li>{{ data.fac2.ac3 }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/admin/edit/fac2">
+                    <button>Edit</button>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- STUDENT LEADER SECTION -->
+        <section class="team-section">
+            <!-- SECTION TEXT -->
+            <h2 class="section-title">Student Leadership</h2>
+
+            <!-- LEADER 1 -->
+            <div class="card detailed-card">
+                <div class="card-image-wrapper">
+                    <img src="{{ data.lead1.photo_url }}" alt="leader1" class="profile-img">
+                </div>
+                <div class="card-content">
+                    <span class="role-badge">{{ data.lead1.role }}</span>
+                    <h3>{{ data.lead1.name }}</h3>
+                    <p class="bio">{{data.lead1.bio}}</p>
+
+                    <div class="achievements">
+                        <h4>Key Achievements</h4>
+                        <ul>
+                            <li>{{data.lead1.ac1}}</li>
+                            <li>{{ data.lead1.ac2}}</li>
+                            <li>{{ data.lead1.ac3}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/admin/edit/lead1">
+                    <button>Edit</button>
+                </a>
+            </div>
+
+            <!-- LEADER 2 -->
+            <div class="card detailed-card">
+                <div class="card-image-wrapper">
+                    <img src="{{ data.lead2.photo_url }}" alt="leader1" class="profile-img">
+                </div>
+                <div class="card-content">
+                    <span class="role-badge">{{ data.lead2.role }}</span>
+                    <h3>{{ data.lead2.name }}</h3>
+                    <p class="bio">{{data.lead2.bio}}</p>
+
+                    <div class="achievements">
+                        <h4>Key Achievements</h4>
+                        <ul>
+                            <li>{{data.lead2.ac1}}</li>
+                            <li>{{ data.lead2.ac2}}</li>
+                            <li>{{ data.lead2.ac3}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/admin/edit/lead2">
+                    <button>Edit</button>
+                </a>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="section-title">Core Coordinators</h2>
+            <div class="team-grid">
+
+                {% for a in data %}
+                <!-- CORE COORDINATOR 1-->
+                <div class="card member-card">
+                    <div class="member-img-container">
+                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="{{ a[0] }}">
+                    </div>
+                    <h3> {{ a[0]}}</h3>
+                    <p class="role">{{ a[1]}}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2 class="section-title">HR & PR Team</h2>
+            <div class="team-grid">
+                <div class="card member-card">
+                    <div class="member-img-container">
+                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 1">
+                    </div>
+                    <h3>HR & PR Member</h3>
+                    <p class="role">HR Coordinator</p>
+                </div>
+                <div class="card member-card">
+                    <div class="member-img-container">
+                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 2">
+                    </div>
+                    <h3>HR & PR Member</h3>
+                    <p class="role">PR Coordinator</p>
+                </div>
+                <div class="card member-card">
+                    <div class="member-img-container">
+                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 3">
+                    </div>
+                    <h3>HR & PR Member</h3>
+                    <p class="role">Coordinator</p>
+                </div>
+                <div class="card member-card">
+                    <div class="member-img-container">
+                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 4">
+                    </div>
+                    <h3>HR & PR Member</h3>
+                    <p class="role">Coordinator</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Data Vibe Network. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

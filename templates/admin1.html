@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/team.css') }}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navcontainer nav-content">
+            <div class="logo-area">
+                <img src="{{url_for('static', filename='img/dvn-logo.png')}}" class="logo light-logo" alt="logo" />
+                <img src="{{url_for('static', filename='img/dvn-logo-dark.png')}}" class="logo dark-logo" alt="logo" />
+                <!-- <span class="logo-text">DATA VIBE NETWORK</span> -->
+            </div>
+
+            <nav class="nav-links">
+                <a href="#">Message</a>
+                <a href="/admin">Page Editor</a>
+                <a href="team">Eventes</a>
+                <a href="/logout" class="contact-btn">Logout</a>
+                <button class="toggle" id="theme-toggle"
+                    style="cursor:pointer; border:none; background:none; font-size:1.3rem;">🌙</button>
+                <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+            </nav>
+        </div>
+    </header>
+    <br>
+    <h2 class="section-title">CONTACT MESSAGE</h2>
+
+    <section class="massage">
+        <div class="admin-inbox">
+            {% for a in msg_data %}
+            <div class="messagebox" data-id="{{ a.id }}">
+                <div class="admin-message-card">
+                    <div class="admin-message-header">
+                        <div class="admin-user">
+                            <span class="name">{{a.name.title()}}</span>
+                            <span class="email">Email- {{a.email}}</span>
+
+                        </div>
+                        <div class="admin-date">{{a.date}}<br>{{a.time}}</div>
+
+                    </div>
+                    <div class="admin-message-body">{{a.message}}</div>
+                </div>
+                <button class="delete-btn" title="Delete message">🗑️</button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <script>
+document.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+
+        const box = e.target.closest(".messagebox");
+        const id = box.dataset.id;
+
+        // optional confirmation
+        if (!confirm("Delete this message?")) return;
+
+        const res = await fetch(`/delete/${id}`, {
+            method: "POST"
+        });
+
+        if (res.ok) {
+            box.remove();   // 🔥 UI updates instantly
+        } else {
+            alert("Delete failed");
+        }
+    }
+});
+</script>
+
+
+<footer>
+    <p>&copy; 2025 Data Vibe Network. All rights reserved.</p>
+</footer>
+</body>
+</html>
