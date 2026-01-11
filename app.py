@@ -8,17 +8,6 @@ from psycopg2.extras import RealDictCursor
 from flask import g
 
 
-def get_db():
-    if "db" not in g:
-        g.db = psycopg2.connect(
-            user=USER,
-            password=PASSWORD,
-            host=HOST,
-            port=PORT,
-            dbname=DBNAME
-        )
-    return g.db
-
 
 def team_data():
     mycon = get_db()
@@ -48,6 +37,16 @@ HOST = os.getenv("SUPABASE_HOST")
 PORT = os.getenv("SUPABASE_PORT")
 DBNAME = os.getenv("SUPABASE_DB")
 
+def get_db():
+    if "db" not in g:
+        g.db = psycopg2.connect(
+            user=USER,
+            password=PASSWORD,
+            host=HOST,
+            port=PORT,
+            dbname=DBNAME
+        )
+    return g.db
 # mycon = mq.connect(host= "localhost", user = "root", password = "root", database = "dvn")
 
 # cloundinary setup for image uploading
