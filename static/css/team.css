@@ -318,8 +318,7 @@ h4 {
 
 /* --- Team Grid (Coordinators) --- */
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
     gap: 2rem;
     justify-content: center;
     /* display: flex;
@@ -337,6 +336,8 @@ h4 {
     border: 1px solid var(--border-light);
     transition: all var(--transition-speed);
     /* width : 270px; */
+    flex: 0 0 calc(25% - 18px); /* 4 cards */
+    min-width: 220px;
 
 }
 

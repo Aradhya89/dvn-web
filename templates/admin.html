@@ -151,51 +151,44 @@
             <h2 class="section-title">Core Coordinators</h2>
             <div class="team-grid">
 
-                {% for a in data %}
+            {% for id, person in data.items() %}
+                {% if person['department'] == 'tech' %}
                 <!-- CORE COORDINATOR 1-->
                 <div class="card member-card">
                     <div class="member-img-container">
-                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="{{ a[0] }}">
+                        <img src="{{ person.photo_url }}" alt="{{ person.photo_url }}">
                     </div>
-                    <h3> {{ a[0]}}</h3>
-                    <p class="role">{{ a[1]}}</p>
+                    <h3> {{ person.name }}</h3>
+                    <p class="role">{{ person.role }}</p>
+                    <a href="/admin/edit/{{id}}">
+                    <button>Edit</button>
+                </a>
                 </div>
+                
+                {% endif %}
                 {% endfor %}
-
             </div>
         </section>
 
         <section class="team-section">
             <h2 class="section-title">HR & PR Team</h2>
             <div class="team-grid">
+            {% for id, person in data.items() %}
+                {% if person['department'] == 'pr' %}
+                <!-- CORE COORDINATOR 1-->
                 <div class="card member-card">
                     <div class="member-img-container">
-                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 1">
+                        <img src="{{ person.photo_url }}" alt="{{ person.photo_url }}">
                     </div>
-                    <h3>HR & PR Member</h3>
-                    <p class="role">HR Coordinator</p>
+                    <h3> {{ person.name }}</h3>
+                    <p class="role">{{ person.role }}</p>
+                    <a href="/admin/edit/{{id}}">
+                    <button>Edit</button>
+                </a>
                 </div>
-                <div class="card member-card">
-                    <div class="member-img-container">
-                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 2">
-                    </div>
-                    <h3>HR & PR Member</h3>
-                    <p class="role">PR Coordinator</p>
-                </div>
-                <div class="card member-card">
-                    <div class="member-img-container">
-                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 3">
-                    </div>
-                    <h3>HR & PR Member</h3>
-                    <p class="role">Coordinator</p>
-                </div>
-                <div class="card member-card">
-                    <div class="member-img-container">
-                        <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="HR & PR Member 4">
-                    </div>
-                    <h3>HR & PR Member</h3>
-                    <p class="role">Coordinator</p>
-                </div>
+                
+                {% endif %}
+                {% endfor %}
             </div>
         </section>
 

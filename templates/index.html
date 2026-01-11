@@ -173,13 +173,11 @@
       </p>
 
 
-      <div class="team-grid">
-
 
         <div class="PRESIDENT">
 
           <!-- PRESIDENT 1 -->
-          <div class="team-card">
+          <div class="president-card">
             <div class="president-avatar-container">
               <img src="{{ data.lead1.photo_url }}" alt="photo" class="profile-avatar">
             </div>
@@ -189,7 +187,7 @@
           </div>
 
           <!-- PRESIDENT 2 -->
-          <div class="team-card">
+          <div class="president-card">
             <div class="president-avatar-container">
               <img src="{{data.lead2.photo_url}}" alt="photo" class="profile-avatar">
             </div>
@@ -198,7 +196,7 @@
           </div>
 
         </div>
-      </div>
+
 
 
     </div>
@@ -218,49 +216,23 @@
 
       <!-- TEAM BOX1 -->
       <div class="team-grid">
+        {% for id, person in data.items() %}
+        {% if person['department'] == 'tech' %}
+        <!-- CORE COORDINATOR 1-->
         <div class="team-card">
           <div class="profile-avatar-container">
-            <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="photo" class="profile-avatar">
+            <img src="{{ person.photo_url }}" alt="{{ person.photo_url }}" class="profile-avatar">
           </div>
-          <h3>Aditya</h3>
-          <p>Tech Lead</p>
+          <h3> {{ person.name }}</h3>
+          <p class="role">{{ person.role }}</p>
         </div>
 
-        <!-- TEAM BOX2 -->
-        <div class="team-card">
-          <div class="profile-avatar-container">
-            <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="photo" class="profile-avatar">
-          </div>
-          <h3>Anurag Shrivastava</h3>
-          <p>Co-Tech Lead</p>
-        </div>
-
-
-        <!-- TEAM BOX3 -->
-        <div class="team-card">
-          <div class="profile-avatar-container">
-            <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="photo" class="profile-avatar">
-          </div>
-          <h3>Member 1</h3>
-          <p>Core Tech Member</p>
-        </div>
-
-
-        <!-- TEAM BOX4 -->
-        <div class="team-card">
-          <div class="profile-avatar-container">
-            <img src="{{url_for('static', filename='img/profile1.jpg')}}" alt="photo" class="profile-avatar">
-          </div>
-          <h3>Member 2</h3>
-          <p>Core Tech Member</p>
-        </div>
-
+        {% endif %}
+        {% endfor %}
+        <!-- VIEW MORE BOX -->
       </div>
-
-      <!-- VIEW MORE BOX -->
-      <a href="/team" style="color: inherit; text-decoration: none;">
-        <div class="team-more">View More</div>
-    </div></a>
+              <a href="/team" style="color: inherit; text-decoration: none;">
+          <div class="team-more">View More</div></a>
 
   </section>
 
@@ -280,10 +252,10 @@
 
       <!-- DETAIL INPUT FORM -->
       <form class="contact-form" method="POST" action="/contact">
-        <input  type="text" name="name" placeholder="Your Name" required />
-        <input  type="email" name="email" placeholder="Your Email" required />
-        <textarea  name="message" placeholder="Your Message" required></textarea>
-        <button  type="submit" class="btn primary">Send Message</button>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn primary">Send Message</button>
       </form>
     </div>
 

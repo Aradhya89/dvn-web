@@ -24,7 +24,7 @@ def get_db():
 def team_data():
     mycon = get_db()
     with mycon.cursor(cursor_factory=RealDictCursor) as cur:
-        cur.execute("select * from team_data")
+        cur.execute("select * from team_data ORDER BY id ")
         data = cur.fetchall()
 
     #to sort the data in the dictionary into key(id) and value (remaing data) form
@@ -83,7 +83,6 @@ def home():
 # to get to the team page
 @app.route("/team")
 def about():
-    print(team_data())
     return render_template("team.html",data = team_data())
 
 @app.route("/admin-login")
@@ -112,9 +111,7 @@ def delete_message(id):
     with mycon.cursor(cursor_factory=RealDictCursor) as cur:
         cur.execute("DELETE FROM contact WHERE id=%s", (str(id),))
         mycon.commit()
-    return "", 204   # ✅ no redirect, no reload
-
-#for admin page
+    return "", 204
 
 @app.route("/admin-main")
 def admin_main():

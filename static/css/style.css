@@ -409,9 +409,10 @@ body {
 
 /* Team */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.3rem;
+  justify-content: center;
 }
 
 .PRESIDENT {
@@ -421,10 +422,20 @@ body {
   justify-content: center;
 }
 
+.president-card {
+  background: var(--bg-white);
+  border-radius: 0.9rem;
+  padding: 1.1rem;
+  border: 1px solid var(--border-light);
+  text-align: center;
+  transition: transform 0.3s;
+}
 .team-card {
   background: var(--bg-white);
   border-radius: 0.9rem;
   padding: 1.1rem;
+  flex: 0 0 calc(25% - 18px); /* 4 cards */
+  min-width: 220px;
   border: 1px solid var(--border-light);
   text-align: center;
   transition: transform 0.3s;
