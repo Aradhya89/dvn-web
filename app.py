@@ -1,6 +1,5 @@
 from flask import Flask , render_template, request, redirect, session 
 import dotenv
-import mysql.connector as mq
 import cloudinary.uploader
 import cloudinary 
 import os
@@ -46,19 +45,8 @@ dotenv.load_dotenv()
 USER = os.getenv("SUPABASE_USER")
 PASSWORD = os.getenv("SUPABASE_PASSWORD")
 HOST = os.getenv("SUPABASE_HOST")
-PORT = os.getenv("SUPTABASE_PORT")
+PORT = os.getenv("SUPABASE_PORT")
 DBNAME = os.getenv("SUPABASE_DB")
-
-def get_db():
-    if "db" not in g:
-        g.db = psycopg2.connect(
-            user=USER,
-            password=PASSWORD,
-            host=HOST,
-            port=PORT,
-            dbname=DBNAME
-        )
-    return g.db
 
 # mycon = mq.connect(host= "localhost", user = "root", password = "root", database = "dvn")
 
