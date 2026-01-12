@@ -31,20 +31,17 @@ def team_data():
 
 dotenv.load_dotenv()
 #mysql setup for database
-USER = os.getenv("SUPABASE_USER")
-PASSWORD = os.getenv("SUPABASE_PASSWORD")
-HOST = os.getenv("SUPABASE_HOST")
-PORT = os.getenv("SUPABASE_PORT")
-DBNAME = os.getenv("SUPABASE_DB")
+# USER = os.getenv("SUPABASE_USER")
+# PASSWORD = os.getenv("SUPABASE_PASSWORD")
+# HOST = os.getenv("SUPABASE_HOST")
+# PORT = os.getenv("SUPABASE_PORT")
+# DBNAME = os.getenv("SUPABASE_DB")
 
 def get_db():
     if "db" not in g:
         g.db = psycopg2.connect(
-            user=USER,
-            password=PASSWORD,
-            host=HOST,
-            port=PORT,
-            dbname=DBNAME
+            os.environ["DATABASE_URL"],
+            sslmode="require"
         )
     return g.db
 # mycon = mq.connect(host= "localhost", user = "root", password = "root", database = "dvn")
@@ -221,4 +218,4 @@ def close_db(exception):
         db.close()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080)
