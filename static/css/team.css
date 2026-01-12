@@ -235,6 +235,7 @@ h4 {
     margin-bottom: 2rem;
     display: flex;
     gap: 2rem;
+    flex-wrap:wrap;
     align-items: flex-start;
     border: 1px solid var(--border-light);
     transition: transform var(--transition-speed);
@@ -318,13 +319,10 @@ h4 {
 
 /* --- Team Grid (Coordinators) --- */
 .team-grid {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+  justify-content: center;
 }
 
 .member-card {
