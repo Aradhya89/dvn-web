@@ -104,7 +104,7 @@ def admin_main():
 
     mycon = get_db()
     with mycon.cursor(cursor_factory=RealDictCursor) as cur:
-        cur.execute("""SELECT name, email, message,TO_CHAR(time, 'DD Mon YYYY') AS date, TO_CHAR(time, 'HH12:MI AM') AS time,id FROM contact ORDER BY time DESC """)
+        cur.execute("""SELECT name, email, message,TO_CHAR(time, 'DD Mon YYYY') AS date, TO_CHAR(time, 'HH12:MI AM') AS time_of_msg, id FROM contact ORDER BY time DESC """)
         data = cur.fetchall()
     return render_template("admin1.html", msg_data = data)
     
