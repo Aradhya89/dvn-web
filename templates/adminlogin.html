@@ -1,11 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DVN Admin Login</title>
+
+    <style>
+        /* Use SAME variables from your main CSS */
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #00aaff;
+            --light-blue-shadow: rgba(0, 170, 255, 0.4);
+
+            --bg-main: #f5f7fb;
+            --bg-white: #ffffff;
+
+            --text-dark: #111827;
+            --text-gray: #4b5563;
+
+            --border-light: #e5e7eb;
+            --border-input: #d1d5db;
+            --border-input-hover: #64748b;
+
+            --shadow-card: rgba(15, 23, 42, 0.12);
+            --transition-speed: 0.3s;
+        }
+
+        :root.dark {
+            --primary-blue: #3b82f6;
+            --light-blue: #38bdf8;
+            --light-blue-shadow: rgba(56, 189, 248, 0.5);
+
+            --bg-main: #0f172a;
+            --bg-white: #1e293b;
+
+            --text-dark: #f8fafc;
+            --text-gray: #cbd5e1;
+
+            --border-light: #475569;
+            --border-input: #64748b;
+            --border-input-hover: #d1d5db;
+
+            --shadow-card: rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg-main);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* LOGIN CARD */
+        .login-card {
+            background: var(--bg-white);
+            width: 100%;
+            max-width: 380px;
+            padding: 1.8rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 18px 40px var(--shadow-card);
+            text-align: center;
+        }
+
+        .login-card h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .login-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 1.4rem;
+        }
+
+        /* FORM */
+        .login-form {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.65rem 0.8rem;
+            border-radius: 0.6rem;
+            border: 1px solid var(--border-input);
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: transparent;
+            color: var(--text-dark);
+        }
+
+        .login-form input:focus,
+        .login-form input:hover {
+            outline: none;
+            border-color: var(--border-input-hover);
+        }
+
+        /* BUTTON */
+        .login-btn {
+            margin-top: 0.5rem;
+            padding: 0.65rem;
+            border-radius: 999px;
+            border: none;
+            background: var(--primary-blue);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER TEXT */
+        .login-footer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="login-card reveal visible">
+        <h1>Admin Login</h1>
+        <p>DVN Internal Access Panel</p>
+
+        <form class="login-form" method="POST" action="/admin-login">
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="login-footer">
+            Authorized access only
+        </div>
+    </div>
+    <script>
+        // Apply saved theme from main website
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
+
 </body>
+
 </html>

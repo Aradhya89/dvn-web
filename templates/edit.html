@@ -207,9 +207,9 @@
                         <textarea id="bio" name="bio">{{ member.bio }}</textarea>
 
                         <label>Key Achievements</label>
-                        <input type="text" name="achievement1" value="{{ member.ac1 }}">
-                        <input type="text" name="achievement2" value="{{ member.ac2 }}" style="margin-top:0.5rem;">
-                        <input type="text" name="achievement3" value="{{ member.ac3 }}" style="margin-top:0.5rem;">
+                        <input type="text" id = "ac1" name="achievement1" value="{{ member.ac1 }}">
+                        <input type="text" id = "ac2" name="achievement2" value="{{ member.ac2 }}" style="margin-top:0.5rem;">
+                        <input type="text" id = "ac3" name="achievement3" value="{{ member.ac3 }}" style="margin-top:0.5rem;">
 
                     </div>
                 </div>
@@ -219,6 +219,24 @@
             </div>
         </form>
     </div>
+        <!-- <script>
+        let allowedDepartments = ["leader", "facutly"];
+         if (!allowedDepartments.includes("{{member.department}}")){
+             // disable fields
+        document.getElementById("ac1").disabled = true;
+        document.getElementById("ac2").disabled = true;
+        document.getElementById("ac3").disabled = true;
+        document.getElementById("bio").disabled = true;
+    } 
+    else {
+    // enable fields
+        document.getElementById("ac1").disabled = false;
+        document.getElementById("ac2").disabled = false;
+        document.getElementById("ac3").disabled = false;
+        document.getElementById("bio").disabled = false;
+     }
+
+    </script> -->
 
 </body>
 

@@ -6,6 +6,7 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from flask import g
+# from flask_wtf.csrf import CSRFProtect
 
 
 
@@ -57,6 +58,7 @@ cloudinary.config(
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRETKEY")
+# csrf = CSRFProtect(app)
 
 # to get to the main page
 @app.route("/")
@@ -71,12 +73,12 @@ def about():
 
 @app.route("/admin-login")
 def admin_login_input():
-    # return render_template("adminlogin.html")
-    return """<form method="POST" action="/admin-login">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>"""
+    return render_template("adminlogin.html")
+    # return """<form method="POST" action="/admin-login">
+    #     <input type="email" name="email" placeholder="Email" required>
+    #     <input type="password" name="password" placeholder="Password" required>
+    #     <button type="submit">Login</button>
+    # </form>"""
 
 @app.route("/admin-login", methods=["POST"])
 def admin_login():
@@ -120,7 +122,7 @@ def admin():
 
     return render_template("admin.html",data = team_data())
 
-@app.route("/logout")
+@app.route("/logout", methods=["POST"])
 def logout():
     session.clear()
     return redirect("/")
@@ -148,6 +150,7 @@ def edit_profile(id):
     with mycon.cursor(cursor_factory=RealDictCursor) as cur:
         cur.execute("SELECT * FROM team_data WHERE id=%s", (id,))
         member = cur.fetchone()
+        print(member)
     return render_template("edit.html", member=member)
 
 
@@ -218,4 +221,4 @@ def close_db(exception):
         db.close()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8080, debug=True)
