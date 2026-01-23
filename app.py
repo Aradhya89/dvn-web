@@ -74,11 +74,6 @@ def about():
 @app.route("/admin-login")
 def admin_login_input():
     return render_template("adminlogin.html")
-    # return """<form method="POST" action="/admin-login">
-    #     <input type="email" name="email" placeholder="Email" required>
-    #     <input type="password" name="password" placeholder="Password" required>
-    #     <button type="submit">Login</button>
-    # </form>"""
 
 @app.route("/admin-login", methods=["POST"])
 def admin_login():
@@ -110,11 +105,6 @@ def admin_main():
         data = cur.fetchall()
     return render_template("admin1.html", msg_data = data)
     
-
-
-
-
-
 @app.route("/admin")
 def admin():
     if not session.get("admin"):
@@ -122,7 +112,7 @@ def admin():
 
     return render_template("admin.html",data = team_data())
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
